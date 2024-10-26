@@ -1,36 +1,48 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# macOS specific files
 .DS_Store
-*.pem
+.AppleDouble
+.LSOverride
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# macOS Finder specific files
+Icon
 
-# local env files
-.env*.local
+# macOS metadata
+._*
+.Spotlight-V100
+.Trashes
 
-# vercel
-.vercel
+# Visual Studio Code settings
+.vscode/
+*.code-workspace
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Node modules
+yarn.lock
+node_modules/
+
+# Python environment
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Build directories
+dist/
+build/
+
+# IDEs
+.idea/
+
+# Miscellaneous
+Thumbs.db
+*.bak
+*.old
+*.orig
+*.swp
+*.swo
