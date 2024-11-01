@@ -52,7 +52,8 @@ export default function Home() {
       darkModeMediaQuery.addEventListener('change', handleThemeChange);
       return () => darkModeMediaQuery.removeEventListener('change', handleThemeChange);
     }
-  }, []);
+  }, [setDarkMode]);
+
 
   useEffect(() => {
     const sections = [
@@ -99,7 +100,7 @@ export default function Home() {
         }
       });
     };
-  }, []);
+  }, [codeShowcaseRefs]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

@@ -17,11 +17,12 @@ export default function About({ isVisible }) {
         During my studies, I collaborated with a classmate to create a bot project using Chat-GPT to analyze news articles, for which we received the highest grade.
       </p>
       <p className="text-lg text-gray-700 leading-relaxed mb-6 dark:text-gray-300">
-        During my internship at <a href="https://www.sourceful-labs.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Srcful</a>, I worked on integrating payment systems into the "Energy Warden" project, ensuring that transactions ran smoothly and securely. I enjoy working with new and current technologies and am eager to contribute to solving technical challenges.
+        During my internship at <a href="https://www.sourceful-labs.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Srcful</a>, I worked on integrating payment systems into the &quot;Energy Warden&quot; project, ensuring that transactions ran smoothly and securely. I enjoy working with new and current technologies and am eager to contribute to solving technical challenges.
       </p>
       <p className="text-lg text-gray-700 leading-relaxed dark:text-gray-300">
         Teamwork is something I highly value. I enjoy both sharing my knowledge and learning from others. I look forward to working in a team that offers customized technical solutions and maximizes value for customers.
       </p>
+
     </section>
   );
 }
