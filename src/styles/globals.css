@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Smooth transition for width changes */
+.grid-item {
+  transition: width 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  position: absolute; /* Keep elements in place while expanding */
+  overflow: auto; /* Add scroll if content exceeds max-height */
+}
+
+.grid-item:hover {
+  z-index: 50; /* Ensure the hovered item is on top */
+}

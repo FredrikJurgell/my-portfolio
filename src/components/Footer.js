@@ -7,6 +7,7 @@ export default function Footer() {
         <a href="https://github.com/FredrikJurgell" target="_blank" className="text-yellow-400 font-bold hover:text-white dark:hover:text-yellow-300">GitHub</a>
       </div>
       <p className="text-center mt-4">&copy; 2024 Fredrik Jurgell. All rights reserved.</p>
+      <p className="text-center mt-2">Email: <a href="mailto:fredrik.jurgell@hotmail.com" className="text-yellow-400 font-bold hover:text-white dark:hover:text-yellow-300">Fredrik.jurgell@hotmail.com</a></p>
     </footer>
   );
 }
