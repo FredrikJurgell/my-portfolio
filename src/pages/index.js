@@ -20,10 +20,6 @@ export default function Home() {
     codeShowcase2: false,
     codeShowcase3: false,
     codeShowcase4: false,
-    codeShowcase5: false,
-    codeShowcase6: false,
-    codeShowcase7: false,
-    codeShowcase8: false,
   });
 
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
@@ -31,7 +27,7 @@ export default function Home() {
   const projectsRef = useRef(null);
   const resumeRef = useRef(null);
   const recommendationRef = useRef(null);
-  const codeShowcaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const codeShowcaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -54,7 +50,6 @@ export default function Home() {
     }
   }, [setDarkMode]);
 
-
   useEffect(() => {
     const sections = [
       { ref: aboutRef, key: 'about' },
@@ -65,10 +60,6 @@ export default function Home() {
       { ref: codeShowcaseRefs[1], key: 'codeShowcase2' },
       { ref: codeShowcaseRefs[2], key: 'codeShowcase3' },
       { ref: codeShowcaseRefs[3], key: 'codeShowcase4' },
-      { ref: codeShowcaseRefs[4], key: 'codeShowcase5' },
-      { ref: codeShowcaseRefs[5], key: 'codeShowcase6' },
-      { ref: codeShowcaseRefs[6], key: 'codeShowcase7' },
-      { ref: codeShowcaseRefs[7], key: 'codeShowcase8' },
     ];
 
     const observer = new IntersectionObserver((entries) => {
@@ -118,13 +109,7 @@ export default function Home() {
   };
 
   const codeSamples = [
-    { language: 'JavaScript', code: `console.log('Hello, World!');` },
-    { language: 'Python', code: `print('Hello, World!')` },
-    { language: 'C++', code: `#include <iostream>\nusing namespace std;\nint main() {\n  cout << "Hello, World!" << endl;\n  return 0;\n}` },
-    { language: 'Ruby', code: `puts 'Hello, World!'` },
-    { language: 'Java', code: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello, World!");\n  }\n}` },
-    { language: 'Go', code: `package main\nimport "fmt"\nfunc main() {\n  fmt.Println("Hello, World!")\n}` },
-    { language: 'Rust', code: `fn main() {\n  println!("Hello, World!");\n}` }, {
+    {
       language: 'JavaScript', code: `async waitForGPT(thread, assistant, instruction, interaction) {
       try {
         const run = await this.openai.beta.threads.runs.create(thread.id, {
@@ -195,6 +180,83 @@ export default function Home() {
         }
       }
     }` },
+    {
+      language: 'JavaScript',
+      code: `async login (req, res, next) {
+        try {
+          const user = await UserModel.authenticate(req.body.username, req.body.password);
+    
+          const payload = {
+            username: user.username,
+            email: user.email,
+            userId: user._id
+          };
+    
+          // Create the access token with the shorter lifespan.
+          const accessToken = jwt.sign(payload, Buffer.from(process.env.ACCESS_TOKEN_SECRET, 'base64'), {
+            algorithm: 'RS256',
+            expiresIn: process.env.ACCESS_TOKEN_LIFE
+          });
+    
+          res
+            .status(201)
+            .json({
+              access_token: accessToken,
+              userId: payload.userId,
+              links: [
+                {
+                  rel: 'profile',
+                  href: \`${'${req.protocol}'}://${'${req.get("host")}'}/api/v1/users/${'${user._id}'}\`
+                }
+              ]
+            });
+        } catch (error) {
+          // Authentication failed.
+          const err = createError(401, 'Credentials invalid or not provided.');
+          next(err);
+        }
+      }`
+    },
+    {
+      language: 'Java', code: `public void fit(float[][] X, int[] y) {
+    numFeatures = X[0].length;
+    int numSamples = X.length;
+
+    // Initialize data structures
+    for (int i = 0; i < numSamples; i++) {
+      int label = y[i];
+      classCounts.put(label, classCounts.getOrDefault(label, 0) + 1);
+
+      if (!featureSums.containsKey(label)) {
+        featureSums.put(label, new ArrayList<>(Collections.nCopies(numFeatures, 0.0f)));
+        featureSquaredSums.put(label, new ArrayList<>(Collections.nCopies(numFeatures, 0.0f)));
+      }
+
+      for (int j = 0; j < numFeatures; j++) {
+        float featureValue = X[i][j];
+        featureSums.get(label).set(j, featureSums.get(label).get(j) + featureValue);
+        featureSquaredSums.get(label).set(j, featureSquaredSums.get(label).get(j) + featureValue * featureValue);
+      }
+    }
+
+    for (Integer label : classCounts.keySet()) {
+      classProbabilities.put(label, (float) classCounts.get(label) / numSamples);
+    }
+  }` },
+    { language: 'csharp', code: `public async Task AddData(IEnumerable<Data> datas)
+        {
+            var index = "imdbdata";
+            var batchSize = 200;
+            var shipped = 0;
+
+            while (datas.Skip(shipped).Take(batchSize).Any())
+            {
+                var batch = datas.Skip(shipped).Take(batchSize);
+                var response = await elasticClient.BulkAsync(b => b.CreateMany(batch).Index(index));
+                shipped += batchSize;
+            }
+        }
+` }
   ];
 
   return (
@@ -208,15 +270,15 @@ export default function Home() {
 
       <div className="container mx-auto grid grid-cols-9 gap-6 relative">
         {/* Left column */}
-        <div className="col-span-2 flex flex-col gap-[40vh] mt-24 relative z-20">
+        <div className="col-span-2 flex flex-col gap-[45vh] mt-24 relative z-20">
           {/* Code showcases on left */}
-          {codeSamples.slice(0, 4).map((sample, index) => (
+          {codeSamples.slice(0, 2).map((sample, index) => (
             <div
               key={index}
               id={`codeShowcase${index * 2 + 1}`}
               ref={codeShowcaseRefs[index * 2]}
               className={`hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 grid-item transition-all duration-500 w-[300px] h-[${30 + index * 5}vh] hover:w-[500px] hover:border hover:border-gray-300 rounded-lg`}
-              style={{ left: 0, marginTop: `${index % 2 === 0 ? index * 800 + 300 : index * 1000}px` }}
+              style={{ left: 0, marginTop: `${index % 2 === 0 ? index * 800 + 300 : index * 2000}px` }}
             >
               <CodeShowcase isVisible={isVisible[`codeShowcase${index * 2 + 1}`]} initialCodeOption={sample.language.toLowerCase()} codeLanguage={sample.language} codeSamples={{ [sample.language.toLowerCase()]: sample.code }} />
             </div>
@@ -265,13 +327,13 @@ export default function Home() {
         {/* Right column */}
         <div className="col-span-2 flex flex-col relative z-20">
           {/* Code showcases on right */}
-          {codeSamples.slice(4, 8).map((sample, index) => (
+          {codeSamples.slice(2, 4).map((sample, index) => (
             <div
               key={index + 4}
               id={`codeShowcase${index * 2 + 2}`}
               ref={codeShowcaseRefs[index * 2 + 1]}
-              className={`hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 grid-item transition-all duration-500 w-[300px] h-[${40 + index * 5}vh] hover:w-[500px] hover:border hover:border-gray-300 rounded-lg`}
-              style={{ right: 0, marginTop: `${Math.min(index * 1000 + (index % 2 === 0 ? 200 : 300), 3000)}px` }}
+              className={`hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 grid-item transition-all duration-500 w-[300px] h-[${45 + index * 5}vh] hover:w-[500px] hover:border hover:border-gray-300 rounded-lg`}
+              style={{ right: 0, marginTop: `${Math.min(index * 1000 + (index % 2 === 0 ? 200 : 900), 3000)}px` }}
             >
               <CodeShowcase isVisible={isVisible[`codeShowcase${index * 2 + 2}`]} initialCodeOption={sample.language.toLowerCase()} codeLanguage={sample.language} codeSamples={{ [sample.language.toLowerCase()]: sample.code }} />
             </div>
