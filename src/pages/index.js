@@ -346,7 +346,7 @@ export default function Home() {
       <div id="codeShowcases" ref={codeShowcasesRef} className="w-full p-4 mt-10 md:mt-20 lg:hidden">
         <button
           onClick={() => setIsVisible((prev) => ({ ...prev, codeShowcases: !prev.codeShowcases }))}
-          className="w-full p-4 bg-blue-900 text-white font-semibold rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-gray-600 transition duration-500 dark:bg-gradient-to-r dark:from-yellow-500 dark:to-yellow-600 dark:text-black"
+          className="w-full p-4 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900  text-white font-semibold rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-gray-600 transition duration-500 dark:bg-gradient-to-r dark:from-yellow-500 dark:to-yellow-600 dark:text-black"
         >
           {isVisible.codeShowcases ? 'Hide Code Showcases' : 'Show Code Showcases'}
         </button>
