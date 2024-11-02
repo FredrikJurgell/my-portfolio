@@ -270,9 +270,9 @@ export default function Home() {
       <Navbar isVisible={isVisible} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
       <Header />
 
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-9 gap-6 relative">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-9 md:grid-cols-5 gap-6 px-4 md:px-8 lg:px-0 relative">
         {/* Left column */}
-        <div className="hidden md:col-span-2 md:flex flex-col gap-24 mt-24 relative z-20">
+        <div className="hidden lg:col-span-2 lg:flex flex-col gap-24 mt-24 relative z-20">
           {/* Code showcases on left */}
           {codeSamples.slice(0, 2).map((sample, index) => (
             <div
@@ -288,11 +288,11 @@ export default function Home() {
         </div>
 
         {/* Main content column */}
-        <div className="col-span-9 md:col-span-5 flex flex-col gap-8 w-full relative z-10 pr-4 pl-4 md:pr-10 md:pl-10">
+        <div className="col-span-5 lg:col-span-5 flex flex-col gap-8 w-full relative z-10 pr-4 pl-4 md:pr-10 md:pl-10">
           {/* About Me */}
           <div className={`w-full max-w-none mx-auto flex justify-center ${isVisible.about ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
-            <section id="about" ref={aboutRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 my-10 md:my-20">
-              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl transform transition-all duration-700 opacity-100 translate-y-0 snap-start snap-always dark:bg-gray-800 dark:text-gray-200 relative z-30">
+            <section id="about" ref={aboutRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in my-10 md:my-20">
+              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-gray-200 relative z-30">
                 <About isVisible={isVisible.about} />
               </div>
             </section>
@@ -300,8 +300,8 @@ export default function Home() {
 
           {/* Projects */}
           <div className={`w-full max-w-none mx-auto flex justify-center ${isVisible.projects ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
-            <section id="projects" ref={projectsRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 my-10 md:my-20">
-              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl transform transition-all duration-700 opacity-100 translate-y-0 snap-start snap-always dark:bg-gray-800 dark:text-gray-200 relative z-30">
+            <section id="projects" ref={projectsRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in my-10 md:my-20">
+              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-gray-200 relative z-30">
                 <Projects isVisible={isVisible.projects} />
               </div>
             </section>
@@ -309,8 +309,8 @@ export default function Home() {
 
           {/* Resume */}
           <div className={`w-full max-w-none mx-auto flex justify-center ${isVisible.resume ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
-            <section id="resume" ref={resumeRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 my-10 md:my-20">
-              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl transform transition-all duration-700 opacity-100 translate-y-0 snap-start snap-always dark:bg-gray-800 dark:text-gray-200 relative z-30">
+            <section id="resume" ref={resumeRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in my-10 md:my-20">
+              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-gray-200 relative z-30">
                 <Resume isVisible={isVisible.resume} />
               </div>
             </section>
@@ -318,8 +318,8 @@ export default function Home() {
 
           {/* Recommendations */}
           <div className={`w-full max-w-none mx-auto flex justify-center ${isVisible.recommendation ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
-            <section id="recommendation" ref={recommendationRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 my-10 md:my-20">
-              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl transform transition-all duration-700 opacity-100 translate-y-0 snap-start snap-always dark:bg-gray-800 dark:text-gray-200 relative z-30">
+            <section id="recommendation" ref={recommendationRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in my-10 md:my-20">
+              <div className="w-full max-w-4xl p-4 md:p-10 bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:text-gray-200 relative z-30">
                 <Recommendation isVisible={isVisible.recommendation} />
               </div>
             </section>
@@ -327,7 +327,7 @@ export default function Home() {
         </div>
 
         {/* Right column */}
-        <div className="hidden md:col-span-2 md:flex flex-col relative z-20">
+        <div className="hidden lg:col-span-2 lg:flex flex-col relative z-20">
           {/* Code showcases on right */}
           {codeSamples.slice(2, 4).map((sample, index) => (
             <div
@@ -343,29 +343,30 @@ export default function Home() {
         </div>
       </div>
 
-      <div id="codeShowcases" ref={codeShowcasesRef} className="w-full p-4 mt-10 md:mt-20 md:hidden">
-      <button
-        onClick={() => setIsVisible((prev) => ({ ...prev, codeShowcases: !prev.codeShowcases }))}
-        className="w-full p-4 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500"
-      >
-        {isVisible.codeShowcases ? 'Hide Code Showcases' : 'Show Code Showcases'}
-      </button>
+      <div id="codeShowcases" ref={codeShowcasesRef} className="w-full p-4 mt-10 md:mt-20 lg:hidden">
+        <button
+          onClick={() => setIsVisible((prev) => ({ ...prev, codeShowcases: !prev.codeShowcases }))}
+          className="w-full p-4 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500"
+        >
+          {isVisible.codeShowcases ? 'Hide Code Showcases' : 'Show Code Showcases'}
+        </button>
 
         {isVisible.codeShowcases && (
           <div className="mt-6 grid grid-cols-1 gap-4">
             {codeSamples.map((sample, index) => (
               <div key={index} className="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <CodeShowcase 
-                  isVisible={true} 
-                  codeLanguage={sample.language} 
-                  initialCodeOption={sample.language.toLowerCase()} 
-                  codeSamples={{ [sample.language.toLowerCase()]: sample.code }} 
+                <CodeShowcase
+                  isVisible={true}
+                  codeLanguage={sample.language}
+                  initialCodeOption={sample.language.toLowerCase()}
+                  codeSamples={{ [sample.language.toLowerCase()]: sample.code }}
                 />
               </div>
             ))}
           </div>
         )}
       </div>
+
 
       <Footer />
     </div>
