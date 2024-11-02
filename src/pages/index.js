@@ -346,7 +346,7 @@ export default function Home() {
       <div id="codeShowcases" ref={codeShowcasesRef} className="w-full p-4 mt-10 md:mt-20 lg:hidden">
         <button
           onClick={() => setIsVisible((prev) => ({ ...prev, codeShowcases: !prev.codeShowcases }))}
-          className="w-full p-4 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500"
+          className="w-full p-4 bg-blue-900 text-white font-semibold rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-gray-600 transition duration-500 dark:bg-gradient-to-r dark:from-yellow-500 dark:to-yellow-600 dark:text-black"
         >
           {isVisible.codeShowcases ? 'Hide Code Showcases' : 'Show Code Showcases'}
         </button>
@@ -354,7 +354,7 @@ export default function Home() {
         {isVisible.codeShowcases && (
           <div className="mt-6 grid grid-cols-1 gap-4">
             {codeSamples.map((sample, index) => (
-              <div key={index} className="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+              <div key={index} className="p-4 bg-white rounded-lg shadow-md dark:bg-gray-900 dark:text-yellow-400">
                 <CodeShowcase
                   isVisible={true}
                   codeLanguage={sample.language}
