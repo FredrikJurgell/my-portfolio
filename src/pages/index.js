@@ -16,10 +16,7 @@ export default function Home() {
     projects: false,
     resume: false,
     recommendation: false,
-    codeShowcase1: false,
-    codeShowcase2: false,
-    codeShowcase3: false,
-    codeShowcase4: false,
+    codeShowcases: false,
   });
 
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
@@ -28,89 +25,12 @@ export default function Home() {
   const resumeRef = useRef(null);
   const recommendationRef = useRef(null);
   const codeShowcaseRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedDarkMode = localStorage.getItem('darkMode');
-      const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialDarkMode = savedDarkMode !== null ? savedDarkMode === 'true' : prefersDarkMode;
-      setDarkMode(initialDarkMode);
-      if (initialDarkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-
-      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleThemeChange = (e) => {
-        setDarkMode(e.matches);
-      };
-      darkModeMediaQuery.addEventListener('change', handleThemeChange);
-      return () => darkModeMediaQuery.removeEventListener('change', handleThemeChange);
-    }
-  }, [setDarkMode]);
-
-  useEffect(() => {
-    const sections = [
-      { ref: aboutRef, key: 'about' },
-      { ref: projectsRef, key: 'projects' },
-      { ref: resumeRef, key: 'resume' },
-      { ref: recommendationRef, key: 'recommendation' },
-      { ref: codeShowcaseRefs[0], key: 'codeShowcase1' },
-      { ref: codeShowcaseRefs[1], key: 'codeShowcase2' },
-      { ref: codeShowcaseRefs[2], key: 'codeShowcase3' },
-      { ref: codeShowcaseRefs[3], key: 'codeShowcase4' },
-    ];
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible((prevState) => ({
-            ...prevState,
-            [entry.target.id]: true,
-          }));
-        } else {
-          setIsVisible((prevState) => ({
-            ...prevState,
-            [entry.target.id]: false,
-          }));
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(({ ref }) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      sections.forEach(({ ref }) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, [codeShowcaseRefs]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('darkMode', darkMode);
-      if (darkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+  const codeShowcasesRef = useRef(null);
 
   const codeSamples = [
     {
-      language: 'JavaScript', code: `async waitForGPT(thread, assistant, instruction, interaction) {
+      language: 'JavaScript',
+      code: `async waitForGPT(thread, assistant, instruction, interaction) {
       try {
         const run = await this.openai.beta.threads.runs.create(thread.id, {
           assistant_id: assistant.id,
@@ -132,7 +52,7 @@ export default function Home() {
           if (runStatus.status === 'requires_action') {
             if (isAvailable) {
             // Flow information
-              console.log('\\n\\n\\nCalled on attempt:', attempts, '\\n\\n\\n', 'available:', isAvailable, '\\n\\n\\n');
+              console.log('\n\n\nCalled on attempt:', attempts, '\n\n\n', 'available:', isAvailable, '\n\n\n');
               isAvailable = false;
               await this.useTool(runStatus, thread, run, interaction);
               await this.getLatestMessage(thread.id);
@@ -218,7 +138,8 @@ export default function Home() {
       }`
     },
     {
-      language: 'Java', code: `public void fit(float[][] X, int[] y) {
+      language: 'Java',
+      code: `public void fit(float[][] X, int[] y) {
     numFeatures = X[0].length;
     int numSamples = X.length;
 
@@ -243,7 +164,9 @@ export default function Home() {
       classProbabilities.put(label, (float) classCounts.get(label) / numSamples);
     }
   }` },
-    { language: 'csharp', code: `public async Task AddData(IEnumerable<Data> datas)
+    {
+      language: 'csharp',
+      code: `public async Task AddData(IEnumerable<Data> datas)
         {
             var index = "imdbdata";
             var batchSize = 200;
@@ -255,9 +178,88 @@ export default function Home() {
                 var response = await elasticClient.BulkAsync(b => b.CreateMany(batch).Index(index));
                 shipped += batchSize;
             }
-        }
-` }
+        }`
+    }
   ];
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedDarkMode = localStorage.getItem('darkMode');
+      const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialDarkMode = savedDarkMode !== null ? savedDarkMode === 'true' : prefersDarkMode;
+      setDarkMode(initialDarkMode);
+      if (initialDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleThemeChange = (e) => {
+        setDarkMode(e.matches);
+      };
+      darkModeMediaQuery.addEventListener('change', handleThemeChange);
+      return () => darkModeMediaQuery.removeEventListener('change', handleThemeChange);
+    }
+  }, [setDarkMode]);
+
+  useEffect(() => {
+    const sections = [
+      { ref: aboutRef, key: 'about' },
+      { ref: projectsRef, key: 'projects' },
+      { ref: resumeRef, key: 'resume' },
+      { ref: recommendationRef, key: 'recommendation' },
+      { ref: codeShowcaseRefs[0], key: 'codeShowcase1' },
+      { ref: codeShowcaseRefs[1], key: 'codeShowcase2' },
+      { ref: codeShowcaseRefs[2], key: 'codeShowcase3' },
+      { ref: codeShowcaseRefs[3], key: 'codeShowcase4' },
+    ];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible((prevState) => ({
+            ...prevState,
+            [entry.target.id]: true,
+          }));
+        } else {
+          setIsVisible((prevState) => ({
+            ...prevState,
+            [entry.target.id]: false,
+          }));
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(({ ref }) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      sections.forEach(({ ref }) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, [codeShowcaseRefs]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('darkMode', darkMode);
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
 
   return (
     <div className={`${darkMode ? 'dark' : ''} flex flex-col min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 snap-y snap-mandatory overflow-y-scroll scroll-smooth transition-colors duration-500 relative z-0`}>
@@ -270,7 +272,7 @@ export default function Home() {
 
       <div className="container mx-auto grid grid-cols-9 gap-6 relative">
         {/* Left column */}
-        <div className="col-span-2 flex flex-col gap-[45vh] mt-24 relative z-20">
+        <div className="hidden md:col-span-2 md:flex flex-col gap-24 mt-24 relative z-20">
           {/* Code showcases on left */}
           {codeSamples.slice(0, 2).map((sample, index) => (
             <div
@@ -286,7 +288,7 @@ export default function Home() {
         </div>
 
         {/* Main content column */}
-        <div className="col-span-5 flex flex-col gap-8 w-full relative z-10 pr-10 pl-10">
+        <div className="col-span-9 md:col-span-5 flex flex-col gap-8 w-full relative z-10 pr-10 pl-10">
           {/* About Me */}
           <div className={`w-full max-w-none mx-auto flex justify-center ${isVisible.about ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
             <section id="about" ref={aboutRef} className="hover:scale-105 transform transition-transform duration-500 ease-in-out animate-fade-in transform transition-all duration-500 my-10 md:my-20">
@@ -325,7 +327,7 @@ export default function Home() {
         </div>
 
         {/* Right column */}
-        <div className="col-span-2 flex flex-col relative z-20">
+        <div className="hidden md:col-span-2 md:flex flex-col relative z-20">
           {/* Code showcases on right */}
           {codeSamples.slice(2, 4).map((sample, index) => (
             <div
@@ -339,8 +341,30 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </div>
 
+      <div id="codeShowcases" ref={codeShowcasesRef} className="w-full p-4 mt-10 md:mt-20 md:hidden">
+        <button
+          onClick={() => setIsVisible((prev) => ({ ...prev, codeShowcases: !prev.codeShowcases }))}
+          className="w-full p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500"
+        >
+          {isVisible.codeShowcases ? 'Hide Code Showcases' : 'Show Code Showcases'}
+        </button>
 
+        {isVisible.codeShowcases && (
+          <div className="mt-6 grid grid-cols-1 gap-4">
+            {codeSamples.map((sample, index) => (
+              <div key={index} className="p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <CodeShowcase 
+                  isVisible={true} 
+                  codeLanguage={sample.language} 
+                  initialCodeOption={sample.language.toLowerCase()} 
+                  codeSamples={{ [sample.language.toLowerCase()]: sample.code }} 
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <Footer />
