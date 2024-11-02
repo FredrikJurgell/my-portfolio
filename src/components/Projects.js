@@ -13,23 +13,23 @@ export default function Projects({ isVisible }) {
         <div className="p-8 border border-gray-300 rounded-lg bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-transform transform hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-900 dark:border-gray-800 hover:scale-105">
           <h3 className="text-3xl font-bold mb-4 dark:text-yellow-400">Thesis project</h3>
           <p className="text-gray-800 mb-4 dark:text-gray-300">My Thesis Project in Collaboration with a Course Mate, where we received the highest grade (A).</p>
-          <Link href="https://github.com/BunnyCode/truth-llm-bot" target="_blank" className="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-yellow-500 dark:text-black">View on GitHub</Link>
-          <Link href="https://www.diva-portal.org/smash/get/diva2:1870150/FULLTEXT01.pdf" target="_blank" className="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 ml-4 dark:bg-yellow-500 dark:text-black">View PDF</Link>
+          <Link href="https://github.com/BunnyCode/truth-llm-bot" target="_blank" className="inline-block w-full p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500">View on GitHub</Link>
+          <Link href="https://www.diva-portal.org/smash/get/diva2:1870150/FULLTEXT01.pdf" target="_blank" className="inline-block w-full p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500 mt-4">View PDF</Link>
         </div>
         <div className="p-8 border border-gray-300 rounded-lg bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-transform transform hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-900 dark:border-gray-800 hover:scale-105">
           <h3 className="text-3xl font-bold mb-4 dark:text-yellow-400">Project 1: Machine-Learning</h3>
           <p className="text-gray-800 mb-4 dark:text-gray-300">Naïve Bayes machine learning algorithm.</p>
-          <Link href="https://github.com/FredrikJurgell/A4-Machine-Learning" target="_blank" className="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-yellow-500 dark:text-black">View on GitHub</Link>
+          <Link href="https://github.com/FredrikJurgell/A4-Machine-Learning" target="_blank" className="inline-block w-full p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500">View on GitHub</Link>
         </div>
         <div className="p-8 border border-gray-300 rounded-lg bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-transform transform hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-900 dark:border-gray-800 hover:scale-105">
           <h3 className="text-3xl font-bold mb-4 dark:text-yellow-400">Project 2: Search-Engine</h3>
           <p className="text-gray-800 mb-4 dark:text-gray-300">Search engine for Wikipedia articles.</p>
-          <Link href="https://github.com/FredrikJurgell/a3-search-engine" target="_blank" className="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-yellow-500 dark:text-black">View on GitHub</Link>
+          <Link href="https://github.com/FredrikJurgell/a3-search-engine" target="_blank" className="inline-block w-full p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500">View on GitHub</Link>
         </div>
         <div className="p-8 border border-gray-300 rounded-lg bg-gradient-to-r from-white via-gray-100 to-gray-200 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-transform transform hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-900 dark:border-gray-800 hover:scale-105">
           <h3 className="text-3xl font-bold mb-4 dark:text-yellow-400">Project 3: Api-Design</h3>
           <p className="text-gray-800 mb-4 dark:text-gray-300">REST API.</p>
-          <Link href="https://github.com/FredrikJurgell/assignment-api-design" target="_blank" className="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-yellow-500 dark:text-black">View on GitHub</Link>
+          <Link href="https://github.com/FredrikJurgell/assignment-api-design" target="_blank" className="inline-block w-full p-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-500">View on GitHub</Link>
         </div>
       </div>
     </section>
