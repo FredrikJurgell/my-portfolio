@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import RollingBanner from './MarqueeBanner';
 
 export default function Navbar({ isVisible, toggleDarkMode, darkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ export default function Navbar({ isVisible, toggleDarkMode, darkMode }) {
 
   return (
     <nav className={`bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white py-4 fixed top-0 left-0 w-full z-40 shadow-md transition-transform transform ${isVisible ? 'translate-y-0' : '-translate-y-full'} dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 dark:text-gray-200`}>
+    <RollingBanner />
       <div className="flex justify-between items-center px-4 md:px-8">
         <div className="text-2xl font-bold md:hidden cursor-pointer flex items-center" onClick={handleTitleClick}>
           <span>Fredrik Jurgell</span>
